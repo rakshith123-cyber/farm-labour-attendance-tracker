@@ -1,0 +1,41 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-attendance-quick-selector-so-that-choosing-the-4th-option-the-absent-option-selected-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-3-div-2-div-4-div-1-saves-the-correct-attendance-status-instead-of-saving-clearing-the-wrong-mark",
+      "featureTitle": "Fix the attendance quick-selector so that choosing the 4th option (the “Absent” option; selected element XPath: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[2]/div[4]/div[1]) saves the correct attendance status instead of saving/clearing the wrong mark.",
+      "files": [
+        "frontend/src/components/AttendanceCellSelector.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-frontend-attendance-selector-logic-so-that-the-absent-option-no-longer-uses-the-clearattendance-flow-and-instead-uses-setattendance-with-attendancestatus-absent-and-adjust-any-user-facing-toast-text-for-this-option-to-be-correct-english",
+      "featureTitle": "Update the frontend attendance selector logic so that the “Absent” option no longer uses the clearAttendance flow and instead uses setAttendance with AttendanceStatus.absent, and adjust any user-facing toast text for this option to be correct English.",
+      "files": [
+        "frontend/src/components/AttendanceCellSelector.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

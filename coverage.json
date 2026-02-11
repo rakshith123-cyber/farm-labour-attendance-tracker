@@ -1,0 +1,50 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T14:27:00.441Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-12",
+        "summary": "Fix the attendance quick-selector so that choosing the 4th option (the “Absent” option; selected element XPath: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[2]/div[4]/div[1]) saves the correct attendance status instead of saving/clearing the wrong mark.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AttendanceCellSelector.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AttendanceCellSelector.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Update the frontend attendance selector logic so that the “Absent” option no longer uses the clearAttendance flow and instead uses setAttendance with AttendanceStatus.absent, and adjust any user-facing toast text for this option to be correct English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AttendanceCellSelector.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AttendanceCellSelector.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/AttendanceCellSelector.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

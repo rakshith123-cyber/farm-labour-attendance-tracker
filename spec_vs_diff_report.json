@@ -1,0 +1,15 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T14:27:00.438Z",
+  "summary": "The diff updates the attendance selector so the “Absent” option calls setAttendance with AttendanceStatus.absent and shows an English toast (“Marked absent”). Backend types include an #absent status and setAttendance stores the provided status per worker/date. No changes are shown to the listed immutable frontend paths.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/AttendanceCellSelector.tsx",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Fix wrong attendance mark being saved from the attendance selector (Absent option)",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Fix the attendance quick-selector so that choosing the 4th option (the “Absent” option; selected element XPath: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[3]/div[2]/div[4]/div[1]) saves the correct attendance status instead of saving/clearing the wrong mark.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "make it wrong mark"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the user clicks a worker/date cell and selects “Absent”, the backend stores an attendance record for that worker/date with status = absent (not another status).",
+        "After selecting “Absent”, reopening the same worker/date cell shows the cell in the Absent/Clear visual state (white) consistently.",
+        "The change is limited to the selected element’s behavior (the “Absent” option) and does not alter the other three options’ saved statuses (Full, Half, Morning-Evening)."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Update the frontend attendance selector logic so that the “Absent” option no longer uses the clearAttendance flow and instead uses setAttendance with AttendanceStatus.absent, and adjust any user-facing toast text for this option to be correct English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "make it wrong mark"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the “Absent” option triggers setAttendance(workerId, date, AttendanceStatus.absent) and not clearAttendance(workerId, date).",
+        "User-facing feedback text is correct and specific (e.g., “Marked absent”) when Absent is selected.",
+        "No changes are made to immutable frontend paths listed in SYSTEM_CONTEXT."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui."
+  ],
+  "nonGoals": [
+    "Adding new attendance statuses beyond the existing four (full, half, morningEvening, absent).",
+    "Redesigning the Calendar/Attendance grid UI beyond correcting the Absent option behavior.",
+    "Changing the overall app theme or navigation."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

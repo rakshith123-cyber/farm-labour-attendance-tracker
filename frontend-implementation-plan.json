@@ -1,0 +1,39 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix Absent option saving wrong attendance mark",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "summary": "Ensure selecting the 4th quick-selector option (“Absent”) saves AttendanceStatus.absent and is reflected consistently when reopening the same worker/date cell, without affecting other options.",
+      "acceptanceCriteria": [
+        "When the user clicks a worker/date cell and selects “Absent”, the backend stores an attendance record for that worker/date with status = absent (not another status).",
+        "After selecting “Absent”, reopening the same worker/date cell shows the cell in the Absent/Clear visual state (white) consistently.",
+        "The change is limited to the selected element’s behavior (the “Absent” option) and does not alter the other three options’ saved statuses (Full, Half, Morning-Evening)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AttendanceCellSelector.tsx",
+          "operation": "modify",
+          "description": "Update the selector’s Absent option so it is mapped to AttendanceStatus.absent (not null/clear), and ensure the selection handler calls setAttendance for Absent while leaving the other three options’ statuses unchanged. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Update frontend selector logic so Absent uses setAttendance(workerId, date, AttendanceStatus.absent) (not clearAttendance) and adjust user-facing toast text to correct English for Absent.",
+      "acceptanceCriteria": [
+        "Clicking the “Absent” option triggers setAttendance(workerId, date, AttendanceStatus.absent) and not clearAttendance(workerId, date).",
+        "User-facing feedback text is correct and specific (e.g., “Marked absent”) when Absent is selected.",
+        "No changes are made to immutable frontend paths listed in SYSTEM_CONTEXT."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AttendanceCellSelector.tsx",
+          "operation": "modify",
+          "description": "Refactor handleSelect (or add a dedicated Absent handler) so the Absent button triggers setAttendance(workerId, date, AttendanceStatus.absent) and shows an Absent-specific success toast (e.g., “Marked absent”); keep clearAttendance only for an explicit clear action (if present) and do not modify any immutable paths. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}
